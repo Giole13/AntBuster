@@ -52,9 +52,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 08131ff439a323546ad028036b7553d1, type: 2}
   - {fileID: 21300000, guid: c8a435f579cec0c40b70ec3cdcd34db9, type: 2}
   - {fileID: 21300000, guid: c49a6158cfa404e45bf5b02e56e7f077, type: 2}
-  - {fileID: 21300000, guid: 2949f01c2a79d284ca5586cff87c28cf, type: 2}
-  - {fileID: 21300000, guid: dc09af0af53effc4793ce4f674039226, type: 2}
   - {fileID: 21300000, guid: 653c688a8bbf59040aebf3538cb4d7b0, type: 2}
+  - {fileID: 21300000, guid: 2949f01c2a79d284ca5586cff87c28cf, type: 2}
+  - {fileID: 21300000, guid: 43345eec30b43534e941aa90409028ac, type: 2}
   - {fileID: 21300000, guid: ae8e007fe90e3704eaafae175d201a6f, type: 2}
   - {fileID: 21300000, guid: 220d2f07bee37a74ea5f5121b92cd215, type: 2}
   - {fileID: 21300000, guid: f6ed8edf61ce8e047b8222ceb92f27ac, type: 2}
@@ -71,9 +71,9 @@ SpriteAtlas:
   - UI_Music_Mute
   - Cake_Life_8
   - UI_Pause_Non
+  - Ant
   - Basic_Turret_Gun
   - Basic_Turret_Body
-  - Ant
   - Cake_Life_5
   - Cake_Life_7
   - Cake_Life_3

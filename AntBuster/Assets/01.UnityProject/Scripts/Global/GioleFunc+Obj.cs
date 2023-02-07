@@ -47,7 +47,7 @@ public static partial class GioleFunc
 
         return searchResult;
     }
-
+    
 
     //! 씬의 루트 오브젝트를 서치해서 찾아주는 함수 -> 현재 활성화 씬에서 특정 오브젝트(objName_)를 찾아주는 함수
     public static GameObject GetRootObj(string objName_)
@@ -67,7 +67,10 @@ public static partial class GioleFunc
         }       // loop
 
         return targetObj_;
-    }       // GetRootObj()
+    }       // GetRootObj() 
+    
+    
+    
 
     //! 현재 활성화 되어 있는 씬을 찾아주는 함수
     public static Scene GetActiveScene()
@@ -90,6 +93,17 @@ public static partial class GioleFunc
         obj_.GetRect().anchoredPosition += position2D;
     }
     
+    /// <summary>
+    /// 해당 오브젝트의 위치를 변경해주는 함수
+    /// </summary>
+    /// <param name="obj_"></param>
+    /// <param name="position2D"></param>
+    public static void SetAnchoredPos(this GameObject obj_,
+        Vector2 position2D)
+    {
+        obj_.GetRect().anchoredPosition = position2D;
+    }
+    
 
     //! 컴포넌트 가져오는 함수
     public static SomeType GetComponentMust<SomeType>(this GameObject obj)
@@ -103,7 +117,13 @@ public static partial class GioleFunc
     }       // GetComponentMust<>() 
     
     
-    //! 컴포넌트 가져오는 함수 
+    /// <summary>
+    /// 자신의 자식의 오브젝트에서 자식의 컴포넌트를 가져오는 함수
+    /// </summary>
+    /// <typeparam name="SomeType">가져올 컴포넌트의 타입</typeparam>
+    /// <param name="obj">현재 자신의 오브젝트</param>
+    /// <param name="ObjName">컴포넌트를 가져올 오브젝트 이름</param>
+    /// <returns>가져올 컴포넌트를 반환한다.</returns>
     public static SomeType GetComponentMust<SomeType>(this GameObject obj , string ObjName)
     {
         SomeType component_ = obj.FindChildObj(ObjName).GetComponent<SomeType>();

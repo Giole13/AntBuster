@@ -8,6 +8,15 @@ public static partial class GioleData
     public const string SCENE_NAME_PLAY = "02.PlayScene";
     public const string SCENE_NAME_TITLE = "01.TilteScene";
 
+    public const string OBJ_NAME_POINT = "Point";
+    public const string OBJ_NAME_BASICTURRET = "BasicTurret";
+    public const string OBJ_NAME_GAMEOBJS = "GameObjs";
+    public const string OBJ_NAME_UI = "UIObjs";
+    public const string OBJ_NAME_MAPTILEPOOL = "MapTilePool";
+
+    public const string OBJ_TAG_NAME_ANT = "Ant";
+    
+
 }
 
 public enum TowerType
