@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretPooling : MonoBehaviour
+public class BulletPooling : MonoBehaviour
 {
     public int bulletCount = 10;
 
@@ -28,7 +28,10 @@ public class TurretPooling : MonoBehaviour
             bulletPool.Push(bullet);
         }
 
-
+        
+        //gameObject.FindChildObj(GioleData.OBJ_NAME_BASICTURRET)
+        //.GetComponent<TurretController>().
+        //    SetBulletPool(bulletPool);
 
     }
 
@@ -36,5 +39,10 @@ public class TurretPooling : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Stack<GameObject> SetBulletPool()
+    {
+        return bulletPool;
     }
 }

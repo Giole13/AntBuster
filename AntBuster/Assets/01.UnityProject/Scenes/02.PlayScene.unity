@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 298774182}
   - component: {fileID: 298774184}
   - component: {fileID: 298774185}
+  - component: {fileID: 298774186}
   m_Layer: 5
   m_Name: Ant
   m_TagString: Ant
@@ -591,9 +592,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef6b93c22a04be4eb76f551917f6b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  antSpeed: 0
+  isCakePicked: 0
+  antLevel: 0
+  antHp: 0
   cakePointObj: {fileID: 0}
   homePointObj: {fileID: 0}
   antMoveSpeed: 0.1
+--- !u!50 &298774186
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298774180}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &326882538
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,10 +952,9 @@ GameObject:
   - component: {fileID: 781173201}
   - component: {fileID: 781173202}
   - component: {fileID: 781173203}
-  - component: {fileID: 781173204}
   m_Layer: 5
   m_Name: BasicTurret
-  m_TagString: Turret
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,27 +1011,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackSpeed: 1
---- !u!50 &781173204
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781173200}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  bulletDamage: 0
+  bulletSpeed: 1
 --- !u!1 &1003447524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,9 +1618,10 @@ GameObject:
   - component: {fileID: 1804457128}
   - component: {fileID: 1804457127}
   - component: {fileID: 1804457129}
+  - component: {fileID: 1804457130}
   m_Layer: 5
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1693,6 +1700,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 25
+--- !u!114 &1804457130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804457125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90341d24bdf45314bb2101e4d8638b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1862197424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +1903,7 @@ GameObject:
   - component: {fileID: 2034575542}
   - component: {fileID: 2034575545}
   - component: {fileID: 2034575546}
+  - component: {fileID: 2034575547}
   m_Layer: 5
   m_Name: MapGround
   m_TagString: Untagged
@@ -1936,6 +1956,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034575541}
   m_CullTransparentMesh: 1
+--- !u!114 &2034575547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034575541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89addf88c6b66214596b648356bb698b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletCount: 10
 --- !u!1 &2081852249
 GameObject:
   m_ObjectHideFlags: 0

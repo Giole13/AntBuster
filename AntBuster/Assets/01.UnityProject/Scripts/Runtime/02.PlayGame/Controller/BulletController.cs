@@ -17,8 +17,8 @@ public class BulletController : MonoBehaviour
         gameObject.GetRect().anchoredPosition =
             new Vector2(0, 0);
 
-        StartCoroutine(RunBulletObj());
 
+        StartCoroutine(RunBulletObj());
     }
 
     // Update is called once per frame
@@ -32,13 +32,20 @@ public class BulletController : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// 설정한 방향으로 날아가는 함수
+    /// </summary>
+    /// <param name="dir_"></param>
+    /// <param name="bulletSpeed_"></param>
     public void SetBulletDirection(Vector2 dir_,
         float bulletSpeed_)
     {
         bulletSpeed = bulletSpeed_;
         dir = dir_;
         gameObject.SetActive(true);
+        Debug.Log("총알 활성화!");
+
+
     }
 
     IEnumerator RunBulletObj()

@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Point
-  - Turret
   - Ant
+  - Bullet
   layers:
   - Default
   - TransparentFX

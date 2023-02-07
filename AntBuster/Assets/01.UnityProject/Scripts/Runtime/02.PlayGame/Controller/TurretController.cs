@@ -13,6 +13,8 @@ public class TurretController : MonoBehaviour
     private GameObject gunObj = default;
     private GameObject bulletObj = default;
 
+
+
     public Stack<GameObject> bulletPool = default;
 
     private bool gunAtive = false;
@@ -24,10 +26,11 @@ public class TurretController : MonoBehaviour
         gunObj = gameObject.FindChildObj("Gun");
         bulletDamage = 1;
 
-        bulletPool = new Stack<GameObject>();
+        //bulletPool = new Stack<GameObject>();
 
 
-
+        bulletPool = transform.parent.GetComponent<BulletPooling>().
+            SetBulletPool();
 
 
         //bulletObj = gameObject.FindChildObj("Bullet");
@@ -71,6 +74,7 @@ public class TurretController : MonoBehaviour
 
     IEnumerator GunActive(Collider2D collision)
     {
+
         while (gunAtive)
         {
             Debug.Log("건 활성화!");
@@ -80,23 +84,25 @@ public class TurretController : MonoBehaviour
             float angle = Mathf.Atan2(relative.x, relative.y) * Mathf.Rad2Deg;
             gunObj.transform.rotation = Quaternion.Euler(0, 0, -angle);
 
+            // 날아갈 방향 정하는 로직
             Vector2 bulletDir =
             (collision.gameObject.GetRect().anchoredPosition -
             gameObject.GetRect().anchoredPosition).normalized;
 
+            //Debug.Log("불릿 폴링 이다! "+ bulletPool);
+            // 총알 꺼내서 발사하는 로직
             GameObject bullet = bulletPool.Pop();
             bullet.GetComponent<BulletController>().
                 SetBulletDirection(bulletDir, bulletSpeed);
+            
+            //Debug.Log("총알 발사하고 나옴!");
 
 
             yield return new WaitForSeconds(attackSpeed);
         }
     }
 
-    public void SetBulletPool(Stack<GameObject> bulletPool_)
-    {
-        bulletPool = bulletPool_;
-    }
+    
 
 
 
