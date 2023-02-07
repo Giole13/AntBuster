@@ -23,7 +23,7 @@ public class BulletPooling : MonoBehaviour
         for (int i = 0; i < bulletCount; ++i)
         {
             bullet = Instantiate(bulletObj, gameObject.FindChildObj
-                (GioleData.OBJ_NAME_BASICTURRET).transform);
+                ("BulletPool").transform);
             bullet.name = $"Bullet({i})";
             bulletPool.Push(bullet);
         }

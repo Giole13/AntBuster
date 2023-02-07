@@ -94,11 +94,12 @@ public class TurretController : MonoBehaviour
             GameObject bullet = bulletPool.Pop();
             bullet.GetComponent<BulletController>().
                 SetBulletDirection(bulletDir, bulletSpeed);
-            
+
             //Debug.Log("ÃÑ¾Ë ¹ß»çÇÏ°í ³ª¿È!");
 
 
             yield return new WaitForSeconds(attackSpeed);
+            //bulletPool.Push(bullet);
         }
     }
 
