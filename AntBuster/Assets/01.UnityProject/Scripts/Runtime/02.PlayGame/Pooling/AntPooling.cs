@@ -8,7 +8,7 @@ public class AntPooling : MonoBehaviour
 
 
     private GameObject antObj = default;
-    private Stack<GameObject> antPoolStack = new Stack<GameObject>();
+    public List<GameObject> antPoolStack = new List<GameObject>();
 
 
     // Start is called before the first frame update
@@ -20,8 +20,16 @@ public class AntPooling : MonoBehaviour
         antObj = gameObjs.FindChildObj("Ant");
         antObj.SetActive(false);
 
-        StartCoroutine(MakeAnt());
+        // 스택에 개미 저장
+        for (int i = 0; i < antQuantity; ++i)
+        {
+            GameObject ant_ = Instantiate(antObj, transform);
+            antPoolStack.Add(ant_);
+            ant_.SetActive(false);
+        }
 
+        // 코루틴으로 계속 호출
+        StartCoroutine(MakeAntToHome());
 
     }
 
@@ -33,26 +41,35 @@ public class AntPooling : MonoBehaviour
 
 
 
-    IEnumerator MakeAnt()
+    IEnumerator MakeAntToHome()
     {
-        for (int i = 0; i < antQuantity; ++i)
+        while (true)
         {
-            GameObject ant_ = Instantiate(antObj, transform);
-            ant_.SetAnchoredPos(new Vector2(1, 1));
-            antPoolStack.Push(ant_);
-            ant_.SetActive(true);
+            foreach (GameObject ant in antPoolStack)
+            {
+                if (ant.activeSelf == false)
+                {
+                    //ant.SetAnchoredPos(new Vector2(0, 0));
+                    ant.SetActive(true);
+                }
+                yield return new WaitForSecondsRealtime(1f);
+            }
+            //GameObject ant_ = antPoolStack.Pop();
+            //ant_.SetAnchoredPos(new Vector2(0, 0));
 
-            yield return new WaitForSecondsRealtime(1f);
+            //yield return new WaitForSecondsRealtime(1f);
         }
+
     }
 
-    public void RemakeAnt()
-    {
-        GameObject ant_ = antPoolStack.Pop();
-        ant_.GetComponent<AntController>().SetAntStat();
-        antPoolStack.Push(ant_);
-        //ant_.SetAnchoredPos(new Vector2(1, 1));
-        ant_.SetActive(true);
-    }
+
+    //public void RemakeAnt(GameObject )
+    //{
+    //    GameObject ant_ = antPoolStack.Pop();
+    //    ant_.GetComponent<AntController>().SetAntStat();
+    //    antPoolStack.Add(ant_);
+    //    //ant_.SetAnchoredPos(new Vector2(1, 1));
+    //    ant_.SetActive(true);
+    //}
 
 }

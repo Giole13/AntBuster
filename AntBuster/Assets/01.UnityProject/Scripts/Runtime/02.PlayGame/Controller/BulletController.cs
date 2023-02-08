@@ -63,7 +63,7 @@ public class BulletController : MonoBehaviour
         bulletFire = true;
         yield return new WaitForSecondsRealtime(0.5f);
         gameObject.SetActive(false);
-        SingletonBulletPooling.Instance.ReloadBullet(gameObject);
+        SingletonManager.Instance.ReloadBullet(gameObject);
     }
 
 
@@ -72,7 +72,7 @@ public class BulletController : MonoBehaviour
         if (collision.transform.tag == "Ant")
         {
             gameObject.SetActive(false);
-            SingletonBulletPooling.Instance.ReloadBullet(gameObject);
+            SingletonManager.Instance.ReloadBullet(gameObject);
         }
     }       // OnTriggerEnter2D()
 }

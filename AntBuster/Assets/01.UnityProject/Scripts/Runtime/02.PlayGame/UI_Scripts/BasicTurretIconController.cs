@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using static UnityEngine.ParticleSystem;
 
 public class BasicTurretIconController : MonoBehaviour, IPointerClickHandler
-    
+
 {
 
     private bool isClicked = false;
@@ -14,21 +14,21 @@ public class BasicTurretIconController : MonoBehaviour, IPointerClickHandler
 
     private GameObject uiObj = default;
     private GameObject basicTurretObj = default;
+    private GameObject mapTilePoolObj = default;
 
     // Start is called before the first frame update
     void Start()
     {
         // 오브젝트 찾는 공간
-        basicTurretObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS)
-            .FindChildObj(GioleData.OBJ_NAME_BASICTURRET);
+        basicTurretObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS).
+            FindChildObj(GioleData.OBJ_NAME_BASICTURRET);
         uiObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_UI);
+        mapTilePoolObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS).
+            FindChildObj("MapTilePool");
+
 
         // 컴포넌트 찾는 공간
         turretObjRect = basicTurretObj.GetRect();
-
-
-
-
 
         // 기본 셋팅
         isClicked = false;
@@ -39,24 +39,24 @@ public class BasicTurretIconController : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        if (isClicked == true)
-        {
-            basicTurretObj.AddAnchoredPos(
-                mouseData.delta / 
-                uiObj.GetComponentMust<Canvas>().scaleFactor);
+        // { LAGACY
+        //if (isClicked == true)
+        //{
+        //    basicTurretObj.AddAnchoredPos(
+        //        mouseData.delta /
+        //        uiObj.GetComponentMust<Canvas>().scaleFactor);
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Instantiate(basicTurretObj,
-                    basicTurretObj.transform.parent);
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        Instantiate(basicTurretObj,
+        //            basicTurretObj.transform.parent);
 
-                isClicked = false;
-                basicTurretObj.SetActive(false);
-            }
-        }
+        //        isClicked = false;
+        //        basicTurretObj.SetActive(false);
+        //    }
+        //}
+        // } LAGACY
     }
-
-
 
     //! 마우스로 클릭했을 때 실행
     public void OnPointerClick(PointerEventData eventData)
@@ -65,8 +65,20 @@ public class BasicTurretIconController : MonoBehaviour, IPointerClickHandler
         mouseData = eventData;
         turretObjRect.anchoredPosition = gameObject.GetRect().anchoredPosition;
         isClicked = !isClicked;
+        mapTilePoolObj.SetActive(true);
     }
 
+    public void SetTurretToClick(Vector2 position_)
+    {
+        if (isClicked == true)
+        {
+            basicTurretObj.SetAnchoredPos(position_);
+            Instantiate(basicTurretObj, basicTurretObj.transform.parent);
+            isClicked = false;
+            basicTurretObj.SetActive(false);
+            mapTilePoolObj.SetActive(false);
+        }
+    }
 
     // { LAGACY
     //// 드래그 함수

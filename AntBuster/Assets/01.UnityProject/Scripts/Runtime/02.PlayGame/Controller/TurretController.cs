@@ -15,7 +15,6 @@ public class TurretController : MonoBehaviour
 
     private GameObject bullet = default;
 
-    public Stack<GameObject> bulletPool = default;
 
     private bool isGunAtcive = false;
 
@@ -31,9 +30,6 @@ public class TurretController : MonoBehaviour
         gunObj = gameObject.FindChildObj("Gun");
         bulletDamage = 1;
 
-
-        bulletPool = transform.parent.GetComponent<BulletPooling>().
-            SetBulletPool();
 
         enemyQueue = new Queue<GameObject>();
 
@@ -87,7 +83,7 @@ public class TurretController : MonoBehaviour
                 gameObject.GetRect().anchoredPosition).normalized;
 
 
-                SingletonBulletPooling.Instance.UseBulletPool(gameObject, bulletDir, bulletSpeed);
+                SingletonManager.Instance.UseBulletPool(gameObject, bulletDir, bulletSpeed);
 
                 yield return new WaitForSecondsRealtime(attackSpeed);
                 continue;
