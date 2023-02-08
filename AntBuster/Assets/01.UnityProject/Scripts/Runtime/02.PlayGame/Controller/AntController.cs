@@ -26,6 +26,7 @@ public class AntController : MonoBehaviour
     private Vector2 cakePoint = default;
     private Vector2 homePoint = default;
 
+    private AntPooling antPool = default;
 
 
     private float distance = 0f;
@@ -34,17 +35,19 @@ public class AntController : MonoBehaviour
     void Start()
     {
         // 오브젝트 찾는 공간
+        GameObject objs = GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS);
         antRect = gameObject.GetRect();
-        cakePointObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS).
-            FindChildObj(GioleData.OBJ_NAME_MAPTILEPOOL).FindChildObj("Point(23,18)");
-        homePointObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS).
-            FindChildObj(GioleData.OBJ_NAME_MAPTILEPOOL).FindChildObj("Point(1,1)");
+        cakePointObj = objs.FindChildObj(GioleData.OBJ_NAME_MAPTILEPOOL).
+            FindChildObj("Point(23,18)");
+        homePointObj = objs.FindChildObj(GioleData.OBJ_NAME_MAPTILEPOOL).
+            FindChildObj("Point(1,1)");
+        antPool = objs.FindChildObj("AntPool").GetComponent<AntPooling>();
 
 
         // 개미를 집에서 태어나게 만드는 함수
         gameObject.SetAnchoredPos(homePointObj.GetRect().anchoredPosition);
 
-        
+
         antDirection =
         cakePointObj.GetRect().anchoredPosition -
         homePointObj.GetRect().anchoredPosition;
@@ -53,13 +56,15 @@ public class AntController : MonoBehaviour
         homePoint = homePointObj.GetRect().anchoredPosition;
 
 
-        antHp = 4;
+        SetAntStat();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        gameObject.GetRect().anchoredPosition =
+            Vector2.Lerp(homePoint, cakePoint, distance);
         if (antRect.anchoredPosition == cakePointObj.GetRect().anchoredPosition)
         {
             backMove = true;
@@ -70,11 +75,6 @@ public class AntController : MonoBehaviour
             //Debug.Log("집 도착 백무브 중단");
             backMove = false;
         }
-
-
-
-        gameObject.GetRect().anchoredPosition =
-            Vector2.Lerp(homePoint, cakePoint, distance);
 
         if (backMove == false)
         {
@@ -87,18 +87,34 @@ public class AntController : MonoBehaviour
             distance -= Time.deltaTime * antMoveSpeed;
         }
 
+        if (antHp <= 0)
+        {
+            gameObject.SetActive(false);
+            //gameObject.SetAnchoredPos(homePointObj.GetRect().anchoredPosition);
+            //gameObject.SetActive(true);
+            //SetAntStat();
 
+        }
+    }
+
+
+    private void OnEnable()
+    {
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Bullet")
         {
-            antHp -= collision.transform.parent.GetComponent<TurretController>().bulletDamage;
+            antHp -= collision.transform.GetComponent<BulletController>().bulletDamage;
         }
     }       // OnTriggerEnter2D()
 
+    public void SetAntStat()
+    {
+        antHp = 4;
 
+    }
 
 }       // class AntController
 
