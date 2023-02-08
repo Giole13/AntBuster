@@ -18,9 +18,8 @@ public class AntController : MonoBehaviour
     private AntPooling antPool = default;
 
     private bool backMove = false;
-    //private bool cakePicked = false;
+    private bool cakePicked = false;
 
-    private Vector2 antDirection = default;
     private Vector2 cakePoint = default;
     private Vector2 homePoint = default;
 
@@ -39,21 +38,10 @@ public class AntController : MonoBehaviour
             FindChildObj("Point(1,1)");
         antPool = objs.FindChildObj("AntPool").GetComponent<AntPooling>();
 
-
-        // 개미를 집에서 태어나게 만드는 함수
-        //gameObject.SetAnchoredPos(homePointObj.GetRect().anchoredPosition);
-
-
-        antDirection =
-        cakePointObj.GetRect().anchoredPosition -
-        homePointObj.GetRect().anchoredPosition;
-
         cakePoint = cakePointObj.GetRect().anchoredPosition;
         homePoint = homePointObj.GetRect().anchoredPosition;
 
-
         SetAntStat();
-
     }
 
     // Update is called once per frame
@@ -66,13 +54,23 @@ public class AntController : MonoBehaviour
             backMove = true;
             //Debug.Log("케잌 도착 백무브 실행");
             // 여기서 케잌 집는 bool 추가
-            //cakePicked = true;
+            cakePicked = true;
+            SingletonManager.Instance.CakeAniControl(false);
         }
         else if (antRect.anchoredPosition == homePointObj.GetRect().anchoredPosition)
         {
             //Debug.Log("집 도착 백무브 중단");
             backMove = false;
-            //cakePicked = false;
+            //케잌을 들고 도착한다면 목숨--
+            if (cakePicked)
+            {
+                SingletonManager.Instance.PlayerLifeControl(false);
+                cakePicked= false;
+            }
+            else
+            {
+                /* Do nothing */
+            }
         }
 
         if (backMove == false)
@@ -89,6 +87,10 @@ public class AntController : MonoBehaviour
         // 체력이 0 이하가 되어서 사라짐
         if (antHp <= 0)
         {
+            if(cakePicked == true)
+            {
+                SingletonManager.Instance.CakeAniControl(true   );
+            }
             gameObject.SetActive(false);
             distance = 0;
             SetAntStat();
@@ -97,12 +99,14 @@ public class AntController : MonoBehaviour
     }
 
 
+
     // 개미가 켜지면 자동으로 집으로 간다!
     private void OnEnable()
     {
         distance = 0;
     }
 
+    // 총알이랑 충돌했을 때
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Bullet")
@@ -110,6 +114,7 @@ public class AntController : MonoBehaviour
             antHp -= collision.transform.GetComponent<BulletController>().bulletDamage;
         }
     }       // OnTriggerEnter2D()
+
 
     public void SetAntStat()
     {

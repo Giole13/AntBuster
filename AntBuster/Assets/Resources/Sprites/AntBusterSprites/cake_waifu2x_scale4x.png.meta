@@ -132,12 +132,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 275
-        width: 234
+        x: 0
+        y: 271
+        width: 239
         height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_1
       rect:
         serializedVersion: 2
-        x: 243
-        y: 272
-        width: 233
-        height: 231
+        x: 239
+        y: 271
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_2
       rect:
         serializedVersion: 2
-        x: 485
-        y: 273
-        width: 231
-        height: 230
+        x: 478
+        y: 271
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_3
       rect:
         serializedVersion: 2
-        x: 760
-        y: 273
-        width: 196
-        height: 230
+        x: 717
+        y: 271
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_4
       rect:
         serializedVersion: 2
-        x: 117
-        y: 36
-        width: 120
-        height: 231
+        x: 0
+        y: 38
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -237,12 +237,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_5
       rect:
         serializedVersion: 2
-        x: 357
-        y: 73
-        width: 120
-        height: 194
+        x: 239
+        y: 38
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_6
       rect:
         serializedVersion: 2
-        x: 601
-        y: 148
-        width: 119
-        height: 119
+        x: 478
+        y: 38
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -279,12 +279,12 @@ TextureImporter:
       name: cake_waifu2x_scale4x_7
       rect:
         serializedVersion: 2
-        x: 839
-        y: 149
-        width: 85
-        height: 117
+        x: 717
+        y: 38
+        width: 239
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

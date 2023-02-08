@@ -70,4 +70,41 @@ public class SingletonManager : SingletonBase<SingletonManager>
             PlusScoreNum(score_);
     }
 
+
+    /// <summary>
+    /// 플레이어 목숨 관리 함수
+    /// </summary>
+    /// <param name="typeBool">true면 증감, false면 가감</param>
+    public void PlayerLifeControl(bool typeBool)
+    {
+        GameManager manager = GioleFunc.GetRootObj("GameManager").
+            GetComponent<GameManager>();
+        if (typeBool == true)
+        {
+            manager.PlayerLifePlus();
+        }
+        else if (typeBool == false)
+        {
+            manager.PlayerLifeMinus();
+        }
+    }
+
+
+    /// <summary>
+    /// 케이크의 애니메이션 관리 함수
+    /// </summary>
+    /// <param name="typeBool">true면 증감, false면 가감</param>
+    public void CakeAniControl(bool typeBool)
+    {
+        GameManager manager = GioleFunc.GetRootObj("GameManager").
+            GetComponent<GameManager>();
+        if (typeBool == true)
+        {
+            manager.CakeAnimatorPlus();
+        }
+        else if (typeBool == false)
+        {
+            manager.CakeAnimatorMinus();
+        }
+    }
 }
