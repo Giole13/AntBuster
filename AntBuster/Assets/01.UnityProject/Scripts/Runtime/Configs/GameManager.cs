@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
         cakeAnimator.SetInteger("CakeNum", playerNumInt--);
     }
 
+    // 케이크의 개수 애니메이션을 올려주는 함수
     public void CakeAnimatorPlus()
     {
         cakeAnimator.SetInteger("CakeNum", playerNumInt++);
