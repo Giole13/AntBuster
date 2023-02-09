@@ -10,17 +10,20 @@ public class GameManager : MonoBehaviour
     private int playerNumInt = 0;
     private GameObject gameOverText = default;
     private Animator cakeAnimator = default;
-
+    private GameObject informationWindowObj = default;
 
     // Start is called before the first frame update
     void Start()
     {
-        // 오브젝트 찾는 구문
+        // 오브젝트 찾는 공간
         scorePoints = GioleFunc.GetRootObj(GioleData.OBJ_NAME_UI).
             FindChildObj("ScorePoints");
+        informationWindowObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_UI).
+            FindChildObj(GioleData.OBJ_NAME_InformationWindow);
 
+        informationWindowObj.SetActive(false);
 
-        // 총알 초기화 시켜주는 구문
+        // 총알 초기화 시켜주는 공간
         SingletonManager.Instance.SetBulletPool();
         GioleFunc.GetRootObj(GioleData.OBJ_NAME_GAMEOBJS).FindChildObj("MapTilePool").
             SetActive(false);
@@ -62,7 +65,7 @@ public class GameManager : MonoBehaviour
     // 플레이어 라이프 감소
     public void PlayerLifeMinus()
     {
-        playerLife--;
+        --playerLife;
 
         if (playerLife <= 0)
         {
@@ -74,20 +77,20 @@ public class GameManager : MonoBehaviour
     // 플레이어 라이브 회복
     public void PlayerLifePlus()
     {
-        playerLife++;
+        ++playerLife;
     }
 
 
     // 케이크의 개수 애니메이션을 줄여주는 함수
     public void CakeAnimatorMinus()
     {
-        cakeAnimator.SetInteger("CakeNum", playerNumInt--);
+        cakeAnimator.SetInteger("CakeNum", --playerNumInt);
     }
 
     // 케이크의 개수 애니메이션을 올려주는 함수
     public void CakeAnimatorPlus()
     {
-        cakeAnimator.SetInteger("CakeNum", playerNumInt++);
+        cakeAnimator.SetInteger("CakeNum", ++playerNumInt);
     }
 
 }

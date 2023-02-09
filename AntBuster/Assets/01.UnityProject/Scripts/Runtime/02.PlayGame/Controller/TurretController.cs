@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
 
-public class TurretController : MonoBehaviour
+public class TurretController : MonoBehaviour, IPointerClickHandler
 {
     public float attackSpeed = 1f;
     public int bulletDamage = default;
     //public int bulletCount = 10;
     public float bulletSpeed = 1.0f;
+
+
 
     private GameObject gunObj = default;
     private GameObject bulletObj = default;
@@ -18,8 +21,9 @@ public class TurretController : MonoBehaviour
 
     private bool isGunAtcive = false;
 
+    private float range = 0f;
 
-    private Queue<GameObject> enemyQueue = default;
+    private List<GameObject> enemyList = default;
     private GameObject enemyObj = default;
 
 
@@ -30,8 +34,10 @@ public class TurretController : MonoBehaviour
         gunObj = gameObject.FindChildObj("Gun");
         bulletDamage = 1;
 
+        // 초기화 공간
+        enemyList = new List<GameObject>();
+        range = GetComponent<CircleCollider2D>().radius;
 
-        enemyQueue = new Queue<GameObject>();
 
         StartCoroutine(GunActive());
     }
@@ -47,9 +53,20 @@ public class TurretController : MonoBehaviour
     {
         if (collision.transform.tag == GioleData.OBJ_TAG_NAME_ANT)
         {
-            enemyQueue.Enqueue(collision.gameObject);
+            enemyList.Add(collision.gameObject);
             enemyObj = collision.gameObject;
 
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.tag == GioleData.OBJ_TAG_NAME_ANT)
+        {
+            if (collision.transform.GetComponent<AntController>().antHp <= 0)
+            {
+                enemyList.Remove(collision.gameObject);
+            }
         }
     }
 
@@ -59,15 +76,16 @@ public class TurretController : MonoBehaviour
         // 나간 친구가 Ant일 경우
         if (collision.transform.tag == GioleData.OBJ_TAG_NAME_ANT)
         {
-            enemyQueue.Dequeue();
+            enemyList.Remove(collision.gameObject);
         }
     }
 
+    //! 계속돌아가다가 적 발견시에 사격
     IEnumerator GunActive()
     {
         while (true)
         {
-            if (0 < enemyQueue.Count)
+            if (0 < enemyList.Count)
             {
 
                 //Debug.Log("건 활성화!");
@@ -95,11 +113,11 @@ public class TurretController : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
+    // 터렛을 클릭했을 때 실행되는 함수
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // 터렛의 정보를 띄워주는 함수
+        SingletonManager.Instance.
+            SetTurretInterface(attackSpeed, range, bulletSpeed, bulletDamage);
+    }
 }

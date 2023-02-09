@@ -107,4 +107,51 @@ public class SingletonManager : SingletonBase<SingletonManager>
             manager.CakeAnimatorMinus();
         }
     }
+
+    /// <summary>
+    /// 실행하면 포탑의 정보를 보여주는 함수
+    /// </summary>
+    /// 공격속도, 사거리, 투사체 속도, 공격력
+    public void SetTurretInterface(float attackSpeed_, float range_,
+        float bulletSpeed_, int bulletDamage_)
+    {
+        GameObject turretInterfaceObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_UI).
+            FindChildObj(GioleData.OBJ_NAME_InformationWindow);
+
+        turretInterfaceObj.SetActive(true);
+        turretInterfaceObj.SetTmpText(
+            $"공격 속도 : {attackSpeed_}\t사거리 : {range_}\n" +
+            $"투사체 속도 : {bulletSpeed_}\t공격력 : {bulletDamage_}"
+            );
+    }
+
+
+    /// <summary>
+    /// 실행하면 개미의 정보를 보여주는 함수
+    /// </summary>
+    public void SetAntInterface(int level_, int antMaxHp_,int antCurrentHp_, float antSpeed_)
+    {
+        GameObject turretInterfaceObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_UI).
+            FindChildObj(GioleData.OBJ_NAME_InformationWindow);
+
+        turretInterfaceObj.SetActive(true);
+        turretInterfaceObj.SetTmpText(
+            $"레벨 : {level_}\n" +
+            $"체력 : {antCurrentHp_} / {antMaxHp_}\t" +
+            $"이동속도 : {antSpeed_}"
+            );
+    }
+
+
+    /// <summary>
+    /// 레벨을 올려해주는 함수
+    /// </summary>
+    public void SetLevel(int level_)
+    {
+        GameObject levelObj = GioleFunc.GetRootObj(GioleData.OBJ_NAME_UI).
+            FindChildObj("Level");
+
+        levelObj.SetTmpText($"{level_}");
+
+    }
 }

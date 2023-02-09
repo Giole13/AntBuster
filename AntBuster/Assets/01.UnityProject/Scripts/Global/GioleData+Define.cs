@@ -13,6 +13,7 @@ public static partial class GioleData
     public const string OBJ_NAME_GAMEOBJS = "GameObjs";
     public const string OBJ_NAME_UI = "UIObjs";
     public const string OBJ_NAME_MAPTILEPOOL = "MapTilePool";
+    public const string OBJ_NAME_InformationWindow = "InformationWindow";
 
     public const string OBJ_TAG_NAME_ANT = "Ant";
     
